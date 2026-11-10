@@ -31,6 +31,27 @@ at once. Every change is recorded and can be undone.
 Settings that the app overwrites while running (browsers, VLC, LibreOffice,
 Transmission...) are locked with "Close ... first" until the app is closed.
 
+## Download (AppImage)
+
+Get `Privacy_Panel-<version>-x86_64.AppImage` from
+[Releases](https://github.com/frebergguru/privacy-panel/releases), then:
+
+```sh
+chmod +x Privacy_Panel-*-x86_64.AppImage
+./Privacy_Panel-*-x86_64.AppImage
+```
+
+The AppImage carries GTK, libadwaita and its own C library, so it runs on old
+distributions too (tested on Ubuntu 18.04 and 20.04 and Fedora 36). Nothing needs to be
+installed. It draws in software (no GPU needed); set `GSK_RENDERER=gl` to use the GPU.
+
+System settings ask for the administrator password through `pkexec`. Because root
+cannot read inside a running AppImage, the root helper is first copied to
+`$XDG_RUNTIME_DIR/privacy-panel/` (a folder only you can write to) and run from there.
+
+Build it yourself (needs Docker): `tools/build-appimage.sh`, then
+`tools/test-appimage.sh` to start it on old distributions in containers.
+
 ## Build and run
 
 Needs Rust 1.87 or newer, GTK 4.14+ and libadwaita 1.6+ (development files).

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>guru.freberg.PrivacyPanel</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Privacy Panel</name>
+  <summary>See and change the privacy settings of your apps</summary>
+  <description>
+    <p>
+      Privacy Panel finds the privacy settings of the apps on a Linux computer, shows them in
+      one place and lets you change them one by one, per app, or all at once. Every change is
+      recorded and can be undone.
+    </p>
+    <p>It covers:</p>
+    <ul>
+      <li>KDE Plasma, KDE Connect, GNOME and GTK settings</li>
+      <li>Firefox, LibreWolf, Floorp, Waterfox, Zen, Thunderbird, Brave, Chrome, Chromium, Vivaldi, Edge and Opera, per profile</li>
+      <li>Apps such as VLC, LibreOffice, GIMP, Audacity, Transmission, Heroic, FileZilla and VS Code</li>
+      <li>Desktop portal permissions, Flatpak sandbox permissions and Snap connections</li>
+      <li>System services, NetworkManager, system logs and distribution telemetry (with the administrator password)</li>
+    </ul>
+    <p>Privacy Panel only reads settings on this computer. It sends nothing anywhere.</p>
+  </description>
+  <launchable type="desktop-id">guru.freberg.PrivacyPanel.desktop</launchable>
+  <url type="homepage">https://github.com/frebergguru/privacy-panel</url>
+  <url type="bugtracker">https://github.com/frebergguru/privacy-panel/issues</url>
+  <developer id="guru.freberg">
+    <name>Morten Freberg</name>
+  </developer>
+  <categories>
+    <category>Settings</category>
+    <category>Security</category>
+  </categories>
+  <content_rating type="oars-1.1"/>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </supports>
+  <releases>
+    <release version="0.1.0" date="2026-11-10"/>
+  </releases>
+</component>

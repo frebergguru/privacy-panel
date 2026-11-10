@@ -18,7 +18,7 @@ pub const WARNING: &[&str] = &["dialog-warning-symbolic", "data-warning-symbolic
 pub const QUESTION: &[&str] = &["dialog-question-symbolic", "help-contents-symbolic", "help-about-symbolic"];
 pub const INFO: &[&str] = &["dialog-information-symbolic", "data-information-symbolic", "help-about-symbolic"];
 /// The app's own icon (About dialog).
-pub const APP: &[&str] = &["security-high", "security-high-symbolic", "preferences-system-privacy", "changes-prevent-symbolic"];
+pub const APP: &[&str] = &["guru.freberg.PrivacyPanel", "security-high", "security-high-symbolic", "preferences-system-privacy", "changes-prevent-symbolic"];
 
 const APP_FALLBACK: &[&str] = &["application-x-executable", "application-x-executable-symbolic", "applications-other-symbolic", "image-missing"];
 

@@ -17,6 +17,15 @@ use adw::prelude::*;
 const APP_ID: &str = "guru.freberg.PrivacyPanel";
 
 fn main() -> gtk::glib::ExitCode {
+    // In the AppImage, GTK uses the host's GPU drivers, and older ones (Mesa 20 on
+    // Ubuntu 20.04, for example) crash GTK's GL renderer. This app needs no GPU, so
+    // draw in software there unless the user chose a renderer.
+    if std::env::var_os("APPIMAGE").is_some() && std::env::var_os("GSK_RENDERER").is_none() {
+        std::env::set_var("GSK_RENDERER", "cairo");
+    }
+    // Built-in icons (see icons/README.md). GtkApplication adds
+    // /guru/freberg/PrivacyPanel/icons to the icon theme because of the app id.
+    gtk::gio::resources_register_include!("icons.gresource").expect("built-in icons");
     let args: Vec<String> = std::env::args().collect();
     let env = privacy_core::Env::from_system();
 
@@ -40,6 +49,7 @@ fn main() -> gtk::glib::ExitCode {
             w.present();
             return;
         }
+        gtk::Window::set_default_icon_name(APP_ID);
         let ui = ui::Ui::new(app, env.clone());
         ui.window.present();
         ui.reload();

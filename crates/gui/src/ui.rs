@@ -516,7 +516,7 @@ impl Ui {
         let page = adw::PreferencesPage::new();
         let intro = adw::PreferencesGroup::new();
         intro.set_description(Some(&glib::markup_escape_text(&format!(
-            "{} Choose the \u{24d8} button on a row to see what it is and exactly what changes.",
+            "{} Choose the \"What is this?\" button (the i in a circle) on a row to see what it is and exactly what changes.",
             privacy_core::about::section(sec)
         ))));
         page.add(&intro);

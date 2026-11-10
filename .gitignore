@@ -1,3 +1,5 @@
 /target/
 /build/
 /scratchpad/
+/build-appimage/
+/dist/

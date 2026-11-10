@@ -11,7 +11,40 @@ use privacy_core::engine::AdminExecutor;
 
 pub struct PkexecHelper;
 
+/// Inside an AppImage the helper sits on a FUSE mount that root cannot read, so pkexec
+/// could not start it from there. Copy it to a folder only this user can write to and
+/// run that copy. pkexec still asks for the administrator password before running it.
+fn appimage_helper() -> Option<PathBuf> {
+    use std::os::unix::fs::{DirBuilderExt, PermissionsExt};
+    let appdir = std::env::var_os("APPDIR")?;
+    std::env::var_os("APPIMAGE")?;
+    let src = PathBuf::from(appdir).join("helper/privacy-panel-helper");
+    if !src.is_file() {
+        return None;
+    }
+    let base = std::env::var_os("XDG_RUNTIME_DIR")
+        .map(PathBuf::from)
+        .filter(|p| p.is_dir())
+        .or_else(|| std::env::var_os("HOME").map(|h| PathBuf::from(h).join(".cache")))?;
+    let dir = base.join("privacy-panel");
+    std::fs::DirBuilder::new().recursive(true).mode(0o700).create(&dir).ok()?;
+    std::fs::set_permissions(&dir, std::fs::Permissions::from_mode(0o700)).ok()?;
+    let dst = dir.join("privacy-panel-helper");
+    // Write to a new file and rename it into place, so a half-written or replaced
+    // file is never run.
+    let tmp = dir.join(format!(".helper-{}", std::process::id()));
+    let _ = std::fs::remove_file(&tmp);
+    std::fs::copy(&src, &tmp).ok()?;
+    std::fs::set_permissions(&tmp, std::fs::Permissions::from_mode(0o700)).ok()?;
+    std::fs::rename(&tmp, &dst).ok()?;
+    Some(dst)
+}
+
 pub fn helper_path() -> Option<PathBuf> {
+    // The AppImage's own helper first, so it always matches this version of the app.
+    if let Some(p) = appimage_helper() {
+        return Some(p);
+    }
     let mut c: Vec<PathBuf> = vec![
         PathBuf::from("/usr/lib/privacy-panel/privacy-panel-helper"),
         PathBuf::from("/usr/local/lib/privacy-panel/privacy-panel-helper"),

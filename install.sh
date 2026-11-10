@@ -9,9 +9,11 @@ BIN=/usr/bin/privacy-panel
 HELPER=/usr/lib/privacy-panel/privacy-panel-helper
 POLICY=/usr/share/polkit-1/actions/guru.freberg.PrivacyPanel.policy
 DESKTOP=/usr/share/applications/guru.freberg.PrivacyPanel.desktop
+ICON=/usr/share/icons/hicolor/scalable/apps/guru.freberg.PrivacyPanel.svg
+METAINFO=/usr/share/metainfo/guru.freberg.PrivacyPanel.metainfo.xml
 
 if [ "${1:-}" = "uninstall" ]; then
-    sudo rm -f "$BIN" "$HELPER" "$POLICY" "$DESKTOP"
+    sudo rm -f "$BIN" "$HELPER" "$POLICY" "$DESKTOP" "$ICON" "$METAINFO"
     sudo rmdir /usr/lib/privacy-panel 2>/dev/null || true
     echo "Removed. Settings changed with Privacy Panel stay as they are; its history is in ~/.local/state/privacy-panel."
     exit 0
@@ -32,4 +34,6 @@ sudo install -Dm755 target/release/privacy-panel "$BIN"
 sudo install -Dm755 target/release/privacy-panel-helper "$HELPER"
 sudo install -Dm644 data/polkit/guru.freberg.PrivacyPanel.policy "$POLICY"
 sudo install -Dm644 data/guru.freberg.PrivacyPanel.desktop "$DESKTOP"
+sudo install -Dm644 data/icons/guru.freberg.PrivacyPanel.svg "$ICON"
+sudo install -Dm644 data/guru.freberg.PrivacyPanel.metainfo.xml "$METAINFO"
 echo "Installed. Start Privacy Panel from the app menu or run: privacy-panel"
