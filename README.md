@@ -75,3 +75,7 @@ PRIVACY_PANEL_ADMIN_DRY_RUN=1 ./target/debug/privacy-panel   # system changes on
 
 Headless screenshots: `GDK_BACKEND=broadway` with `gtk4-broadwayd`, then
 `privacy-panel --selftest-screenshot DIR`.
+
+## License
+
+GPL-3.0-or-later. See [LICENSE](LICENSE).
