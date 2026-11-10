@@ -1,0 +1,21 @@
+[app]
+id = "heroic"
+name = "Heroic Games Launcher"
+icon = "heroic"
+desktop = ["com.heroicgameslauncher.hgl", "heroic"]
+binaries = ["heroic"]
+flatpak = "com.heroicgameslauncher.hgl"
+processes = ["heroic"]
+
+[[setting]]
+id = "analytics"
+title = "Send anonymous analytics"
+explanation = "Heroic can send anonymous usage data to its developers."
+category = "telemetry"
+format = "json"
+files = ["$XDG_CONFIG_HOME/heroic/config.json"]
+pointer = ["defaultSettings", "analyticsOptIn"]
+type = "bool"
+default = false
+recommended = false
+requires_closed = true

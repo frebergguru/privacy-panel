@@ -1,0 +1,75 @@
+[app]
+id = "transmission"
+name = "Transmission"
+icon = "transmission"
+desktop = ["transmission-gtk", "transmission-qt", "com.transmissionbt.Transmission"]
+binaries = ["transmission-gtk", "transmission-qt", "transmission-daemon"]
+flatpak = "com.transmissionbt.Transmission"
+processes = ["transmission-gt", "transmission-gtk", "transmission-qt", "transmission-da", "transmission-daemon"]
+
+[[setting]]
+id = "dht"
+title = "Find peers through DHT"
+explanation = "Shares which torrents you are downloading with a worldwide network of other clients, so they can find you."
+category = "network"
+format = "json"
+files = ["$XDG_CONFIG_HOME/transmission/settings.json"]
+pointer = ["dht-enabled"]
+type = "bool"
+default = true
+requires_closed = true
+
+[[setting]]
+id = "pex"
+title = "Exchange peers with other clients (PEX)"
+explanation = "Tells the people you are connected to about other people downloading the same torrent."
+category = "network"
+format = "json"
+files = ["$XDG_CONFIG_HOME/transmission/settings.json"]
+pointer = ["pex-enabled"]
+type = "bool"
+default = true
+requires_closed = true
+
+[[setting]]
+id = "lpd"
+title = "Announce torrents on the local network (LPD)"
+explanation = "Broadcasts which torrents you are sharing to every device on your local network."
+category = "network"
+format = "json"
+files = ["$XDG_CONFIG_HOME/transmission/settings.json"]
+pointer = ["lpd-enabled"]
+type = "bool"
+default = false
+recommended = false
+requires_closed = true
+
+[[setting]]
+id = "encryption"
+title = "Encryption"
+explanation = "Encrypting traffic hides what you transfer from your internet provider, but it does not hide your IP address from other peers."
+category = "network"
+format = "json"
+files = ["$XDG_CONFIG_HOME/transmission/settings.json"]
+pointer = ["encryption"]
+type = "choice"
+default = "1"
+recommended = "2"
+requires_closed = true
+options = [
+  { id = "0", label = "Allow unencrypted", raw = "0" },
+  { id = "1", label = "Prefer encrypted", raw = "1" },
+  { id = "2", label = "Require encrypted", raw = "2" },
+]
+
+[[setting]]
+id = "blocklist"
+title = "Use a blocklist"
+explanation = "Refuses connections from IP addresses on a downloaded list. You also need to set a blocklist address in Transmission."
+category = "network"
+format = "json"
+files = ["$XDG_CONFIG_HOME/transmission/settings.json"]
+pointer = ["blocklist-enabled"]
+type = "bool"
+default = false
+requires_closed = true

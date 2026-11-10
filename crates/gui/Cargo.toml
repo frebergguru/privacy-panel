@@ -1,0 +1,12 @@
+[package]
+name = "privacy-panel"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+privacy-core = { path = "../core" }
+serde_json.workspace = true
+gtk = { package = "gtk4", version = "0.10", features = ["v4_14"] }
+adw = { package = "libadwaita", version = "0.8", features = ["v1_6"] }

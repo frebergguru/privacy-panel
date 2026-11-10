@@ -1,0 +1,62 @@
+[app]
+id = "vscodium"
+name = "VSCodium"
+icon = "vscodium"
+desktop = ["codium", "vscodium", "com.vscodium.codium"]
+binaries = ["codium"]
+flatpak = "com.vscodium.codium"
+processes = ["codium"]
+
+[[setting]]
+id = "telemetry"
+title = "Telemetry"
+explanation = "Sends usage data, errors and crash reports to Microsoft. Extensions may send their own data too."
+category = "telemetry"
+format = "json"
+files = ["$XDG_CONFIG_HOME/VSCodium/User/settings.json"]
+pointer = ["telemetry.telemetryLevel"]
+type = "choice"
+default = "all"
+recommended = "off"
+options = [
+  { id = "all", label = "All data", raw = "\"all\"" },
+  { id = "error", label = "Errors and crashes", raw = "\"error\"" },
+  { id = "crash", label = "Crashes only", raw = "\"crash\"" },
+  { id = "off", label = "Off", raw = "\"off\"" },
+]
+
+[[setting]]
+id = "experiments"
+title = "Online experiments"
+explanation = "Lets Microsoft turn features on and off remotely to test them."
+category = "telemetry"
+format = "json"
+files = ["$XDG_CONFIG_HOME/VSCodium/User/settings.json"]
+pointer = ["workbench.enableExperiments"]
+type = "bool"
+default = true
+recommended = false
+
+[[setting]]
+id = "nlsearch"
+title = "Online settings search"
+explanation = "Sends what you type in the settings search box to an online service for better results."
+category = "telemetry"
+format = "json"
+files = ["$XDG_CONFIG_HOME/VSCodium/User/settings.json"]
+pointer = ["workbench.settings.enableNaturalLanguageSearch"]
+type = "bool"
+default = true
+recommended = false
+
+[[setting]]
+id = "npm"
+title = "Look up npm package information online"
+explanation = "Fetches details about npm packages named in package.json files you open."
+category = "network"
+format = "json"
+files = ["$XDG_CONFIG_HOME/VSCodium/User/settings.json"]
+pointer = ["npm.fetchOnlinePackageInfo"]
+type = "bool"
+default = true
+recommended = false

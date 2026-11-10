@@ -1,0 +1,23 @@
+[app]
+id = "gimp"
+name = "GIMP"
+icon = "gimp"
+desktop = ["gimp", "org.gimp.GIMP"]
+binaries = ["gimp"]
+flatpak = "org.gimp.GIMP"
+processes = ["gimp", "gimp-3.0", "gimp-3.2", "gimp-2.10"]
+
+[[setting]]
+id = "check-updates"
+title = "Check for updates"
+explanation = "GIMP downloads a version file from gimp.org when it starts, to tell you about new releases."
+category = "updates"
+format = "gimprc"
+files = ["$XDG_CONFIG_HOME/GIMP/3.2/gimprc", "$XDG_CONFIG_HOME/GIMP/3.0/gimprc", "$XDG_CONFIG_HOME/GIMP/2.10/gimprc"]
+key = "check-updates"
+type = "bool"
+on = "yes"
+off = "no"
+default = true
+recommended = false
+requires_closed = true

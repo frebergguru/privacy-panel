@@ -1,0 +1,104 @@
+[app]
+id = "libreoffice"
+name = "LibreOffice"
+icon = "libreoffice-startcenter"
+desktop = ["libreoffice-startcenter", "libreoffice-writer", "org.libreoffice.LibreOffice", "libreoffice-calc"]
+binaries = ["libreoffice", "soffice"]
+flatpak = "org.libreoffice.LibreOffice"
+processes = ["soffice.bin", "oosplash"]
+
+[[setting]]
+id = "updatecheck"
+title = "Check for updates automatically"
+explanation = "LibreOffice regularly contacts its update server, sending its version, language and operating system."
+category = "updates"
+format = "xcu"
+files = ["$XDG_CONFIG_HOME/libreoffice/4/user/registrymodifications.xcu"]
+item = "/org.openoffice.Office.Jobs/Jobs/org.openoffice.Office.Jobs:Job['UpdateCheck']/Arguments"
+key = "AutoCheckEnabled"
+type = "bool"
+default = true
+recommended = false
+requires_closed = true
+note = "Package-managed Linux builds often do not include the update checker; then this has no effect."
+
+[[setting]]
+id = "removepersonalinfo"
+title = "Remove personal information when saving"
+explanation = "Removes the author name, editing times and comments' author names from documents when you save them, so they are not shared with the people you send files to."
+category = "tracking"
+format = "xcu"
+files = ["$XDG_CONFIG_HOME/libreoffice/4/user/registrymodifications.xcu"]
+item = "/org.openoffice.Office.Common/Security/Scripting"
+key = "RemovePersonalInfoOnSaving"
+type = "bool"
+default = false
+recommended = true
+requires_closed = true
+
+[[setting]]
+id = "crashreport"
+title = "Send crash reports"
+explanation = "After a crash, LibreOffice offers to upload a report to The Document Foundation."
+category = "telemetry"
+format = "xcu"
+files = ["$XDG_CONFIG_HOME/libreoffice/4/user/registrymodifications.xcu"]
+item = "/org.openoffice.Office.Common/Misc"
+key = "CrashReport"
+type = "bool"
+default = true
+recommended = false
+requires_closed = true
+
+[[setting]]
+id = "usage"
+title = "Collect usage data"
+explanation = "Collects anonymous information about which features you use and sends it to The Document Foundation."
+category = "telemetry"
+format = "xcu"
+files = ["$XDG_CONFIG_HOME/libreoffice/4/user/registrymodifications.xcu"]
+item = "/org.openoffice.Office.Common/Misc"
+key = "CollectUsageInformation"
+type = "bool"
+default = false
+recommended = false
+requires_closed = true
+
+[[setting]]
+id = "macros"
+title = "Macro security"
+explanation = "Macros in documents can run code on your computer. Higher levels only run macros from trusted places or signed by trusted people."
+category = "security"
+format = "xcu"
+files = ["$XDG_CONFIG_HOME/libreoffice/4/user/registrymodifications.xcu"]
+item = "/org.openoffice.Office.Common/Security/Scripting"
+key = "MacroSecurityLevel"
+type = "choice"
+default = "2"
+recommended = "2"
+requires_closed = true
+options = [
+  { id = "0", label = "Low (run all macros, not recommended)", raw = "0" },
+  { id = "1", label = "Medium (ask before running)", raw = "1" },
+  { id = "2", label = "High (signed or trusted places only)", raw = "2" },
+  { id = "3", label = "Very high (trusted places only)", raw = "3" },
+]
+
+[[setting]]
+id = "picklist"
+title = "Length of the recent documents list"
+explanation = "How many recently opened documents LibreOffice remembers."
+category = "history"
+format = "xcu"
+files = ["$XDG_CONFIG_HOME/libreoffice/4/user/registrymodifications.xcu"]
+item = "/org.openoffice.Office.Common/History"
+key = "PickListSize"
+type = "choice"
+default = "25"
+requires_closed = true
+options = [
+  { id = "0", label = "Do not remember", raw = "0" },
+  { id = "10", label = "10 documents", raw = "10" },
+  { id = "25", label = "25 documents", raw = "25" },
+  { id = "100", label = "100 documents", raw = "100" },
+]

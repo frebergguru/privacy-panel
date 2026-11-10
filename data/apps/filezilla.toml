@@ -1,0 +1,26 @@
+[app]
+id = "filezilla"
+name = "FileZilla"
+icon = "filezilla"
+desktop = ["filezilla", "org.filezillaproject.Filezilla"]
+binaries = ["filezilla"]
+flatpak = "org.filezillaproject.Filezilla"
+processes = ["filezilla"]
+
+[[setting]]
+id = "kiosk"
+title = "Store server passwords"
+explanation = "Without a master password, FileZilla saves server passwords in its settings files in a form that anyone who can read your files can decode. \"Do not save passwords\" asks for them each time instead."
+category = "security"
+format = "xmlsetting"
+files = ["$XDG_CONFIG_HOME/filezilla/filezilla.xml"]
+key = "Kiosk mode"
+type = "choice"
+default = "0"
+recommended = "1"
+requires_closed = true
+options = [
+  { id = "0", label = "Save passwords", raw = "0" },
+  { id = "1", label = "Do not save passwords", raw = "1" },
+  { id = "2", label = "Do not save passwords or connection history", raw = "2" },
+]

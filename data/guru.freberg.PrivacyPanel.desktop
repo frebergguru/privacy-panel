@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Privacy Panel
+GenericName=Privacy settings
+Comment=See and change the privacy settings of your apps
+Exec=privacy-panel
+Icon=security-high
+Terminal=false
+Categories=Settings;Security;GTK;
+Keywords=privacy;telemetry;tracking;permissions;flatpak;firefox;
+StartupNotify=true

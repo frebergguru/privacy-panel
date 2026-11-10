@@ -1,0 +1,39 @@
+[app]
+id = "vlc"
+name = "VLC media player"
+icon = "vlc"
+desktop = ["vlc", "org.videolan.VLC"]
+binaries = ["vlc"]
+flatpak = "org.videolan.VLC"
+processes = ["vlc"]
+
+[[setting]]
+id = "metadata-network-access"
+title = "Fetch media information and album art online"
+explanation = "VLC looks up the titles of songs and films you play on internet services to find artwork and details. VLC asks about this the first time it starts."
+category = "network"
+format = "ini"
+files = ["$XDG_CONFIG_HOME/vlc/vlcrc"]
+group = "core"
+key = "metadata-network-access"
+type = "bool"
+on = "1"
+off = "0"
+default = false
+recommended = false
+requires_closed = true
+
+[[setting]]
+id = "recentplay"
+title = "Remember recently played media"
+explanation = "VLC keeps a list of files and streams you played, shown in the Media menu."
+category = "history"
+format = "ini"
+files = ["$XDG_CONFIG_HOME/vlc/vlcrc"]
+group = "qt"
+key = "qt-recentplay"
+type = "bool"
+on = "1"
+off = "0"
+default = true
+requires_closed = true
